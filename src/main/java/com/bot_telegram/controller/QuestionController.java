@@ -37,7 +37,13 @@ public class QuestionController {
         return "question_form";
     }
 
-    @PostMapping("/questions/save")
+    /*@PostMapping("/questions/save")
+    public String saveQuestion(Question question) {
+        repo.save(question);
+
+        return "redirect:/questions";
+    }*/
+	@GetMapping("/questions/save")
     public String saveQuestion(Question question) {
         repo.save(question);
 
