@@ -38,7 +38,7 @@ public class QuestionController {
     }
 
     @PostMapping("/questions/save")
-    public String saveQuestion(Question question) {
+    public String saveQuestion(@ModelAttribute Question question) {
         repo.save(question);
 
         return "redirect:/questions";
