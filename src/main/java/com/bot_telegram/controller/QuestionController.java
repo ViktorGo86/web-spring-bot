@@ -41,7 +41,8 @@ public class QuestionController {
     public String saveQuestion(Question question) {
         repo.save(question);
 
-        return "redirect:/questions";
+        //return "redirect:/questions";
+		return "/questions";
     }
 
     @GetMapping("/questions/edit/{id}")
