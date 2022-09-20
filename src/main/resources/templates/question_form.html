@@ -25,7 +25,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="signup-form">
                 <form action="" class="mt-5 border p-4 bg-light shadow"
-                      th:action="@{/questions/save}" th:object="${question}" method="get">
+                      th:action="@{/questions/save}" th:object="${question}" method="post">
                     <input type="hidden" th:field="*{id}"/>
                     <div th:if="${question.id == null}"><h4 class="mb-5 text-secondary">Добавить новый вопрос</h4></div>
                     <div th:unless="${question.id == null}"><h4 class="mb-5 text-secondary">Отредактировать вопрос</h4></div>
