@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Список вопросов</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-right">
+    <div sec:authorize="isAuthenticated()">
+        Добро пожаловать, <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="signup-form">
+                <form action="" class="mt-5 border p-4 bg-light shadow"/>
+                <div><h4 class="mb-5 text-secondary">Список вопросов</h4></div>
+
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Вопрос</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Отобразить</th>
+                        <th scope="col">Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="question : ${listQuestions}">
+                        <tr>
+                            <td scope="row">[[${question.id}]]</td>
+                            <td>[[${question.name}]]</td>
+                            <td>[[${question.description}]]</td>
+
+                            <td th:if="${question.enabled==true}"><span class="badge badge-success rounded-pill d-inline">Да</span></td>
+                            <td th:if="${question.enabled==false}"><span class="badge badge-danger rounded-pill d-inline">Нет</span></td>
+                          <!--
+                            <td>
+                                <a th:href="@{'/questions/question_answers/'+${question.id}}">View</a>
+                                &nbsp;
+                                <a sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')" th:href="@{'/questions/edit/'+${question.id}}">Edit</a>
+                                &nbsp;
+                                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/questions/delete/'+${question.id}}">Delete</a>
+                            </td>-->
+
+                            <td>
+                                <a class="btn btn-info" th:href="@{'/questions/question_answers/'+${question.id}}" role="button">View</a>
+                                <a class="btn btn-warning" sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')" th:href="@{'/questions/edit/'+${question.id}}" role="button">Edit</a>
+                                <a class="btn btn-danger " sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/questions/delete/'+${question.id}}" role="button">Delete</a>
+                            </td>
+
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+
+
+                </form>
+                <div class="text-right p-3">
+                    <a sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')" class="btn btn-primary m-2" th:href ="@{/questions/new}" role="button">Добавить</a>
+                    <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Назад</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    function cancelForm() {
+        window.location = "[[@{/}]]";
+
+    }
+</script>
+</body>
+</html>

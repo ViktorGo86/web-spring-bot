@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить вопрос</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-right">
+    <div sec:authorize="isAuthenticated()">
+        Добро пожаловать, <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+    </div>
+</div>
+
+<!--
+<div class="container-fluid text-center">
+    <div th:if="${question.id == null}"><h1>Добавить новый вопрос</h1></div>
+    <div th:unless="${question.id == null}"><h1>Отредактировать вопрос</h1></div>
+
+    <form th:action="@{/questions/save}" th:object="${question}" method="post"
+          style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Наименование вопроса: </label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{name}" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Описание: </label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{description}" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Включить/отключить:</label>
+                <div class="col-sm-2">
+                    <input type="checkbox" th:field="*{enabled}"  />
+                </div>
+            </div>
+
+            <div class="text-center p-3">
+                <button type="submit" class="btn btn-primary m-2">Сохранить</button>
+                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Отмена</button>
+            </div>
+        </div>
+
+    </form>
+
+ </div>
+
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="signup-form">
+                <form action="" class="mt-5 border p-4 bg-light shadow"
+                      th:action="@{/questions/save}" th:object="${question}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div th:if="${question.id == null}"><h4 class="mb-5 text-secondary">Добавить новый вопрос</h4></div>
+                    <div th:unless="${question.id == null}"><h4 class="mb-5 text-secondary">Отредактировать вопрос</h4></div>
+                    <div class="row">
+
+                        <div class="mb-3 col-md-12">
+                            <label>Наименование вопроса<span class="text-danger">*</span></label>
+                            <textarea th:field="*{name}" class="form-control" placeholder="Enter Наименование вопроса" rows="3" required></textarea>
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                            <label>Описание</label>
+                            <input type="text" th:field="*{description}" class="form-control" placeholder="Enter Описание">
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                        <label>
+                            <input type="checkbox" th:field="*{enabled}"> Отобразить вопрос
+                        </label>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary m-2">Сохранить</button>
+                            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Отмена</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    function cancelForm() {
+        window.location = "[[@{/questions}]]";
+
+    }
+</script>
+</body>
+</html>

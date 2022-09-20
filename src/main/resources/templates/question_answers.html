@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Вопрос с ответами</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-right">
+    <div sec:authorize="isAuthenticated()">
+        Добро пожаловать, <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="signup-form">
+                <form action="" class="mt-5 border p-4 bg-light shadow"
+                      th:object="${question}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div><h4 class="mb-5 text-secondary">Вопрос с ответами</h4></div>
+                    <div class="row">
+                        <div class="mb-3 col-md-12">
+                            <label>Вопрос</label>
+                            <textarea th:field="*{name}" class="form-control"  rows="3" required></textarea>
+                          </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="signup-form">
+                <form action="" class="mt-5 border p-4 bg-light shadow"/>
+                <div><h4 class="mb-5 text-secondary">Список ответов</h4></div>
+
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID ответа</th>
+                        <th scope="col">Наименование ответа</th>
+                        <th scope="col">Правильный ответ</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Отобразить</th>
+                        <th scope="col" sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">Действия</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="answer : ${listAnswersQuestion}">
+                        <tr>
+                            <td cope="row">[[${answer.id}]]</td>
+                            <td>[[${answer.name}]]</td>
+                            <td th:if="${answer.correctAnswer==true}"><span class="badge badge-success rounded-pill d-inline">Да</span></td>
+                            <td th:if="${answer.correctAnswer==false}"><span class="badge badge-danger rounded-pill d-inline">Нет</span></td>
+                            <td>[[${answer.description}]]</td>
+                            <td th:if="${answer.enabled==true}"><span class="badge badge-success rounded-pill d-inline">Да</span></td>
+                            <td th:if="${answer.enabled==false}"><span class="badge badge-danger rounded-pill d-inline">Нет</span></td>
+
+                           <!-- <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
+                                <a th:href="@{'/questions/question_answers/edit/'+${answer.id}}">Edit</a>
+                                &nbsp;
+                                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/questions/question_answers/delete/'+${answer.id}}">Delete</a>
+                            </td>-->
+                            <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
+                                <a class="btn btn-warning" th:href="@{'/questions/question_answers/edit/'+${answer.id}}" role="button">Edit</a>
+                                <a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-danger " th:href="@{'/questions/question_answers/delete/'+${answer.id}}" role="button">Delete</a>
+                            </td>
+
+
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+
+
+                </form>
+                <div class="text-right p-3">
+                    <a sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')" class="btn btn-primary m-2" th:href ="@{'/questions/question_answers/new/'+${question.id}}" role="button">Добавить</a>
+                    <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Назад</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    function cancelForm() {
+        window.location = "[[@{/questions}]]";
+
+    }
+</script>
+</body>
+</html>

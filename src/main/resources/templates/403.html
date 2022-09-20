@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8">
+<title>Извините, у вас нет разрешения</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-right">
+	<div sec:authorize="isAuthenticated()">
+		Добро пожаловать, <b><span sec:authentication="name">Username</span></b>
+		&nbsp;
+		<i><span sec:authentication="principal.authorities">Roles</span></i>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Выйти" />
+		</form>
+	</div>
+</div>
+	<h2>Извините, у вас нет разрешения.</h2>
+</body>
+</html>
