@@ -37,7 +37,7 @@ public class QuestionController {
         return "question_form";
     }
 
-    @PostMapping("questions/save")
+    @PostMapping("/questions/save")
     public String saveQuestion(Question question) {
         repo.save(question);
 
