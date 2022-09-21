@@ -7,10 +7,7 @@ import com.bot_telegram.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,12 +35,11 @@ public class QuestionController {
     }
 
     @PostMapping("/questions/save")
-	public String saveQuestion(@ModelAttribute("question") Question question) {
+    public String saveQuestion(@ModelAttribute("question") Question question) {
     //public String saveQuestion(Question question) {
         repo.save(question);
 
         return "redirect:/questions";
-		
     }
 
     @GetMapping("/questions/edit/{id}")
