@@ -22,7 +22,10 @@
     <div class="p-2">
         <a class="h2" th:href ="@{/questions}">Список вопросов</a>
     </div>
-
+    <div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')" class="p-2">
+        <a class="h2" th:href ="@{/questions/new}">Добавить вопрос</a>
+    </div>
+	
 </div>
 </body>
 </html>
