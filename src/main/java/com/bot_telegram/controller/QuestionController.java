@@ -44,7 +44,6 @@ public class QuestionController {
         return "redirect:/questions";
     }
 
-
     @GetMapping("/questions/edit/{id}")
     public String showEditQuestionForm(@PathVariable("id") Integer id, Model model) {
         Question question = repo.findById(id).get();
