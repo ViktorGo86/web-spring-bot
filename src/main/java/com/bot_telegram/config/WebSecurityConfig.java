@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -37,6 +38,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -44,9 +46,12 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/{^[a-zA-Z]}/new").hasAnyAuthority("ADMIN", "CREATOR")
                 .antMatchers("/{^[a-zA-Z]}/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
                 .antMatchers("/{^[a-zA-Z]}/delete/**").hasAuthority("ADMIN")
+                .antMatchers("/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
                 .and()
                 .logout().permitAll()
                 .and()
