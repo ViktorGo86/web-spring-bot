@@ -17,6 +17,7 @@
         </form>
     </div>
 </div>
+<!--
 <div class="container-fluid text-center">
     <div><h1>СУБД (Вопросы с ответами) и Bot Telegram (тест на знания)</h1></div>
     <div class="p-2">
@@ -24,5 +25,107 @@
     </div>
 
 </div>
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-4">
+        <h2>Safari bug warning!</h2>
+        <p class="text-danger">Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+        <h2>Heading</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+    </div>
+</div>
+</div>
+-->
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-2">
+            <div class="col-lg-8 col-md-8 mx-auto">
+                <h2 class="fw-light">СУБД (Вопросы с ответами) и Bot Telegram (тест на знания)</h2>
+                <p class="lead text-muted">Developer: Viktor Gnidenko</p>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+
+                    <div class="card shadow-sm">
+                        <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>-->
+
+                        <div class="card-body">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a th:href ="@{/questions}" class="btn btn-success my-2">Spring Web Application</a>
+                            </div>
+
+                            <p class="font-monospace" >Технологический стек:</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Java</li>
+                                <li class="list-group-item">Spring Boot Web</li>
+                                <li class="list-group-item">Spring framework</li>
+                                <li class="list-group-item">Spring BootDevTools</li>
+                                <li class="list-group-item">Spring Data JPA & Hibernate (CRUD)</li>
+                                <li class="list-group-item">PostgreSQL Database</li>
+                                <li class="list-group-item">Spring Security</li>
+                                <li class="list-group-item">Thymeleaf</li>
+                                <li class="list-group-item">HTML & Bootstrap</li>
+                            </ul>
+
+                        </div>
+                        <img  class="mx-auto d-block" th:src="@{/images/spring.png}" />
+                        <p></p>
+                    </div>
+
+                </div>
+                <div class="col">
+
+                    <div class="card shadow-sm">
+                        <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>-->
+
+                        <div class="card-body">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a target="_blank" href ="https://telegram.me/SpringGoBot" class="btn btn-primary my-2">Telegram Web</a>
+                            </div>
+                            <p class="card-text">Технологический стек:</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Java</li>
+                                <li class="list-group-item">Telegram Bot</li>
+                                <li class="list-group-item">Spring Boot</li>
+                                <li class="list-group-item">Spring framework</li>
+                                <li class="list-group-item">Spring JDBC Template</li>
+                                <li class="list-group-item">PostgreSQL Database</li>
+                            </ul>
+
+                        </div>
+                        <img class="mx-auto d-block" th:src="@{/images/telegram.png}" />
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
 </body>
 </html>
