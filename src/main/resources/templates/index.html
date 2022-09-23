@@ -44,10 +44,10 @@
 -->
 <main>
 
-    <section class="py-5 text-center container">
+    <section class="py-8 text-center container">
         <div class="row py-lg-2">
-            <div class="col-lg-8 col-md-8 mx-auto">
-                <h2 class="fw-light">СУБД (Вопросы с ответами) и Bot Telegram (тест на знания)</h2>
+            <div class="col-lg-10 col-md-8 mx-auto">
+                <h2 class="fw-light">База знаний с автоматизированным тестированием</h2>
                 <p class="lead text-muted">Developer: Viktor Gnidenko</p>
                 </p>
             </div>
@@ -70,8 +70,8 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a th:href ="@{/questions}" class="btn btn-success my-2">Spring Web Application</a>
                             </div>
-
-                            <p class="font-monospace" >Технологический стек:</p>
+                            <h4>База знаний</h4>
+                            <p class="card-text"><u>Технологический стек:</u></p>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Java</li>
                                 <li class="list-group-item">Spring Boot Web</li>
@@ -85,7 +85,7 @@
                             </ul>
 
                         </div>
-                        <img  class="mx-auto d-block" th:src="@{/images/spring.png}" />
+                        <a th:href ="@{/questions}"><img  class="mx-auto d-block" th:src="@{/images/spring.png}" /></a>
                         <p></p>
                     </div>
 
@@ -102,7 +102,8 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a target="_blank" href ="https://telegram.me/SpringGoBot" class="btn btn-primary my-2">Telegram Web</a>
                             </div>
-                            <p class="card-text">Технологический стек:</p>
+                            <h4>Автоматизиронный тест</h4>
+                            <p class="card-text"><u>Технологический стек:</u></p>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Java</li>
                                 <li class="list-group-item">Telegram Bot</li>
@@ -113,7 +114,7 @@
                             </ul>
 
                         </div>
-                        <img class="mx-auto d-block" th:src="@{/images/telegram.png}" />
+                        <a target="_blank" href ="https://telegram.me/SpringGoBot"><img class="mx-auto d-block" th:src="@{/images/telegram.png}" /></a>
                     </div>
 
 
