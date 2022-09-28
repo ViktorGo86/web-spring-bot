@@ -9,11 +9,6 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    /*    @Query("SELECT u FROM User u WHERE u.username = :username")
-    public User getUserByUsername(@Param("username") String username);*/
-    //List<Question>
-
-
 }
 
 

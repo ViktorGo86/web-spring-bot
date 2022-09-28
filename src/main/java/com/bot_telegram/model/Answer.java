@@ -25,12 +25,6 @@ public class Answer {
     @JoinColumn(name = "question_id")
     private Question question;
 
-    /*@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "question_id")
-    private Question question;*/
-
-
-
     public Answer() {
     }
 
@@ -41,8 +35,6 @@ public class Answer {
         this.enabled = enabled;
         this.question = question;
     }
-
-
 
     public Answer(Integer id) {
         this.id = id;

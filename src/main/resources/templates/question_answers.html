@@ -70,12 +70,6 @@
                             <td>[[${answer.description}]]</td>
                             <td th:if="${answer.enabled==true}"><span class="badge badge-success rounded-pill d-inline">Да</span></td>
                             <td th:if="${answer.enabled==false}"><span class="badge badge-danger rounded-pill d-inline">Нет</span></td>
-
-                           <!-- <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
-                                <a th:href="@{'/questions/question_answers/edit/'+${answer.id}}">Edit</a>
-                                &nbsp;
-                                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/questions/question_answers/delete/'+${answer.id}}">Delete</a>
-                            </td>-->
                             <td sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
                                 <a class="btn btn-warning" th:href="@{'/questions/question_answers/edit/'+${answer.id}}" role="button">Edit</a>
                                 <a sec:authorize="hasAnyAuthority('ADMIN')" class="btn btn-danger " th:href="@{'/questions/question_answers/delete/'+${answer.id}}" role="button">Delete</a>

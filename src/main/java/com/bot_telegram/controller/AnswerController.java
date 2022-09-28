@@ -22,51 +22,13 @@ public class AnswerController {
     @Autowired
     private QuestionRepository questionRepo;
 
-   /* @GetMapping("/answers/new")
-    public String showNewProductForm(Model model) {
-        List<Question> listQuestions = questionRepo.findAll();
-
-        model.addAttribute("answer", new Answer());
-        model.addAttribute("listQuestions", listQuestions);
-
-        return "answer_form";
-    }*/
-
-    /*@PostMapping("/answers/save")
-    public String saveAnswer(Answer answer) {
-        answerRepo.save(answer);
-
-        //return "redirect:/answers";
-        return "redirect:/questions/question_answers/";
-        //return "redirect:/questions/question_answers/"+questionAnsId.getId();
-    }*/
     @PostMapping("/questions/question_answers/save")
     public String saveAnswer(Answer answer) {
-        //Answer questionAnsId = answerRepo.getQuestionId(id);
-        //System.out.println("answer.getId() = "+answer.getId());
-        //System.out.println("answer.getId() = "+answer.getQuestion().getId());
-
         answerRepo.save(answer);
 
-        System.out.println("*******************************************************************");
-        //System.out.println("answer.getId() = "+answer.getId());
-        System.out.println("answer.getId() = "+answer.getQuestion().getId());
-        //System.out.println("answerRepo.getQuestionId(answer.getId()) = "+answerRepo.getQuestionId(answer.getId()));
-
-
-        //return "redirect:/answers";
-        //return "redirect:/questions";
         return "redirect:/questions/question_answers/"+answer.getQuestion().getId();
     }
 
-    /*@GetMapping("/answers")
-    public String listAnswers(Model model) {
-        List<Answer> listAnswers = answerRepo.findAll();
-        model.addAttribute("listAnswers", listAnswers);
-        return "answers";
-    }*/
-
-   // @GetMapping("/answers/edit/{id}")
     @GetMapping("/questions/question_answers/edit/{id}")
     public String showEditAnswerForm(@PathVariable("id") Integer id, Model model) {
         Answer answer = answerRepo.findById(id).get();
@@ -75,20 +37,7 @@ public class AnswerController {
         List<Question> listQuestions = questionRepo.findAll();
         model.addAttribute("listQuestions", listQuestions);
 
-        //return "answer_form";
         return "question_answers_form";
     }
-
-   /* @GetMapping("/answers/delete/{id}")
-    public String deleteAnswer(@PathVariable("id") Integer id, Model model) {
-        answerRepo.deleteById(id);
-
-        return "redirect:/answers";
-    }*/
-
-
-
-
-
 
 }

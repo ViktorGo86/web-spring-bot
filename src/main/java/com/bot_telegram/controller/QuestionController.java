@@ -35,7 +35,6 @@ public class QuestionController {
     }
 
     @PostMapping("/questions/save")
-    //public String saveQuestion(@ModelAttribute("question") Question question) {
     public String saveQuestion(Question question) {
         repo.save(question);
 
@@ -53,26 +52,15 @@ public class QuestionController {
     @GetMapping("/questions/delete/{id}")
     public String deleteQuestion(@PathVariable("id") Integer id, Model model) {
         repo.deleteById(id);
-        //answerRepo.deleteById(id);
 
         return "redirect:/questions";
     }
-
-    /*@GetMapping("/questions/question_answers/{id}")
-    public String listByIdQuestionAnswers(@PathVariable("id") Integer id, @RequestBody Answer answer) {
-        answer.setQuestion(id);
-        answerRepo.findAll(answer);
-
-    }*/
 
     @GetMapping("/questions/question_answers/{id}")
     public String listByIdQuestionAnswers(@PathVariable("id") Integer id,Model model) {
         Question question = repo.findById(id).get();
         model.addAttribute("question", question);
 
-        /*List<Answer> listAnswers = answerRepo.findAll();
-        model.addAttribute("listAnswers", listAnswers);
-        return "question_answers";*/
         Iterable<Answer> listAnswersQuestion = answerRepo.getQuestionWithAnswers(id);
         model.addAttribute("listAnswersQuestion", listAnswersQuestion);
 
@@ -81,11 +69,7 @@ public class QuestionController {
 
     @GetMapping("/questions/question_answers/delete/{id}")
     public String deleteQuestionAnswers(@PathVariable("id") Integer id, Model model) {
-        //Iterable<Answer> questionId = answerRepo.getQuestionId(id);
         Answer questionAnsId = answerRepo.getQuestionId(id);
-                //System.out.println("questionId = "+questionId.getId());
-        //System.out.println("*******************************************************************");
-        //System.out.println("questionId2222222 = "+answerRepo.getQuestionId(id));
         answerRepo.deleteById(id);
 
         return "redirect:/questions/question_answers/"+questionAnsId.getId();
@@ -94,15 +78,8 @@ public class QuestionController {
     @GetMapping("/questions/question_answers/new/{id}")
     public String showNewQuestionAnswersForm(@PathVariable("id") Integer id, Model model) {
         Question question = repo.findById(id).get();
-        //model.addAttribute("question", question);
-        //List<Question> listQuestions = repo.findAll();
-
-
-        System.out.println("*******************************************************************");
-        System.out.println("question = "+question.getId());
-
         model.addAttribute("answer", new Answer());
-        model.addAttribute("listQuestions", question);//listQuestions);
+        model.addAttribute("listQuestions", question);
 
         return "question_answers_form";
     }

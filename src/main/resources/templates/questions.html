@@ -47,14 +47,6 @@
 
                             <td th:if="${question.enabled==true}"><span class="badge badge-success rounded-pill d-inline">Да</span></td>
                             <td th:if="${question.enabled==false}"><span class="badge badge-danger rounded-pill d-inline">Нет</span></td>
-                          <!--
-                            <td>
-                                <a th:href="@{'/questions/question_answers/'+${question.id}}">View</a>
-                                &nbsp;
-                                <a sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')" th:href="@{'/questions/edit/'+${question.id}}">Edit</a>
-                                &nbsp;
-                                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/questions/delete/'+${question.id}}">Delete</a>
-                            </td>-->
 
                             <td>
                                 <a class="btn btn-info" th:href="@{'/questions/question_answers/'+${question.id}}" role="button">View</a>
